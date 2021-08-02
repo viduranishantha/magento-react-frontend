@@ -1,24 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { ApolloLink, InMemoryCache, ApolloProvider, ApolloClient } from '@apollo/client';
+
+// Page & Layout Imports
+import Homepage from "./pages/Homepage";
+import Category from "./pages/Category";
+import ProductDetails from "./pages/ProductDetails";
+import SiteHeader from "./components/SiteHeader";
+import CategoryDetails from './pages/CategoryDetails';
+
+
+// apollo client
+const client = new ApolloClient({
+  uri: 'http://localhost/graphql',
+  cache: new InMemoryCache()
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ApolloProvider client={client}>
+        <div className="App">
+          <div className="header-container">
+              <SiteHeader></SiteHeader>
+          </div>
+              
+      
+          <div className="main-content">
+              <h2> magneto React store front</h2>
+              <Switch>
+                <Route exact path= "/">
+                  <Homepage/>
+                </Route>
+                <Route exact path= "/category">
+                  <Category/>
+                </Route>
+                <Route path= "/category/:id">
+                  <CategoryDetails/>
+                </Route>
+                <Route path= "/product/:id">
+                  <ProductDetails/>
+                </Route>
+              </Switch>
+
+          </div>
+        </div>
+    </ApolloProvider>
+    </Router>
   );
 }
 
