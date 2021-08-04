@@ -15,7 +15,7 @@ export default function Homepage() {
                 {data && data.data.map( user => (
                     
                     <div key={user.id} className="user"> 
-                    <img key={user.avatar} src={user.avatar}/>
+                    <img key={user.avatar} src={user.avatar} alt={user.first_name}/>
                     <div>{user.first_name + " " + user.last_name}  </div>
                     <div>{user.email} </div>
                     </div>

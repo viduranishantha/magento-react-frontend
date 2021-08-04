@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import { ApolloLink, InMemoryCache, ApolloProvider, ApolloClient } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+
 
 // Page & Layout Imports
 import Homepage from "./pages/Homepage";
@@ -11,7 +13,7 @@ import CategoryDetails from './pages/CategoryDetails';
 
 // apollo client
 const client = new ApolloClient({
-  uri: 'http://localhost/graphql',
+  uri: 'http://localhost:1337/graphql',
   cache: new InMemoryCache()
 });
 
